@@ -165,59 +165,114 @@ burgerBtn.addEventListener('click',function(){
 //         }
 //     };
 // });
-const scrollContainer = document.querySelector(".scrolling_wrapper");
+// const scrollContainer = document.querySelector(".scrolling_wrapper");
 
-scrollContainer.addEventListener("wheel", (evt) => {
-    evt.preventDefault();
-    scrollContainer.scrollLeft += evt.deltaY;
-});
+// scrollContainer.addEventListener("wheel", (evt) => {
+//     evt.preventDefault();
+//     scrollContainer.scrollLeft += evt.deltaY;
+// });
 
 
-/**
-* By Alvaro Trigo 
-* Follow me on Twitter: https://twitter.com/imac2
-*/
-(function(){
-  init();
+// /**
+// * By Alvaro Trigo 
+// * Follow me on Twitter: https://twitter.com/imac2
+// */
+// (function(){
+//   init();
 
-  var g_containerInViewport;
-  function init(){
-      setStickyContainersSize();
-      bindEvents();
-  }
+//   function init(){
+//       setStickyContainersSize();
+//       bindEvents();
+//   }
 
-  function bindEvents(){
-      window.addEventListener("wheel", wheelHandler);        
-  }
+//   function bindEvents(){
+//       window.addEventListener("wheel", wheelHandler);        
+//   }
 
-  function setStickyContainersSize(){
-      document.querySelectorAll('.scrolling_wrapper .card').forEach(function(container){
-          const stikyContainerHeight = container.querySelector('.scrolling_wrapper').scrollWidth;
-          container.setAttribute('style', 'height: ' + stikyContainerHeight + 'px');
-      });
-  }
+//   function setStickyContainersSize(){
+//       document.querySelectorAll('.scrolling_wrapper .card').forEach(function(container){
+//           const stikyContainerHeight = container.querySelector('.scrolling_wrapper').scrollWidth;
+//           container.setAttribute('style', 'height: ' + stikyContainerHeight + 'px');
+//       });
+//   }
 
-  function isElementInViewport (el) {
-      const rect = el.getBoundingClientRect();
-      return rect.top <= 0 && rect.bottom > document.documentElement.clientHeight;
-  }
+//   function isElementInViewport (el) {
+//       const rect = el.getBoundingClientRect();
+//       return rect.top <= 0 && rect.bottom > document.documentElement.clientHeight;
+//   }
 
-  function wheelHandler(evt){
+//   function wheelHandler(evt){
       
-      const containerInViewPort = Array.from(document.querySelectorAll('.scrolling_wrapper .card')).filter(function(container){
-          return isElementInViewport(container);
-      })[0];
+//       const containerInViewPort = Array.from(document.querySelectorAll('.scrolling_wrapper .card')).filter(function(container){
+//           return isElementInViewport(container);
+//       })[0];
 
-      if(!containerInViewPort){
-          return;
-      }
+//       if(!containerInViewPort){
+//           return;
+//       }
 
-      var isPlaceHolderBelowTop = containerInViewPort.offsetTop < document.documentElement.scrollTop;
-      var isPlaceHolderBelowBottom = containerInViewPort.offsetTop + containerInViewPort.offsetHeight > document.documentElement.scrollTop;
-      let g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom;
+//       var isPlaceHolderBelowTop = containerInViewPort.offsetTop < document.documentElement.scrollTop;
+//       var isPlaceHolderBelowBottom = containerInViewPort.offsetTop + containerInViewPort.offsetHeight > document.documentElement.scrollTop;
+//       let g_canScrollHorizontally = isPlaceHolderBelowTop && isPlaceHolderBelowBottom;
 
-      if(g_canScrollHorizontally){
-          containerInViewPort.querySelector('.scrolling_wrapper').scrollLeft += evt.deltaY;
-      }
-  }
-})();
+//       if(g_canScrollHorizontally){
+//           containerInViewPort.querySelector('.scrolling_wrapper').scrollLeft += evt.deltaY;
+//       }
+//   }
+// })();
+
+
+{/* <script> */}
+    initMagicScroll();
+    function initMagicScroll() {
+        const groups = [];
+        $('.uc-rightscroll, .uc-leftscroll').each(function() {
+            if ($(this).prev().hasClass('uc-rightscroll') && $(this).hasClass('uc-rightscroll')) {
+                groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
+                return;
+            }
+
+             if ($(this).prev().hasClass('uc-leftscroll') && $(this).hasClass('uc-leftscroll')) {
+                groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
+                return;
+            }
+    
+            groups.push({
+                $els: $(this),
+                options: {
+                    dir: $(this).hasClass('uc-leftscroll') ? 'left' : 'right'
+                }
+            });
+        });
+    
+        const map = {};
+        for (let group of groups) {
+            const id = 'uc' + Date.now();
+            map[id] = group;
+            const extraStyle = group.options.dir === 'right' ? `left: -${group.$els.length - 1}00vw; flex-direction: row-reverse;` : '';
+            group
+                .$els
+                .css({
+                    flex: '0 0 100vw',
+                })
+                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 100vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00vw; height: 100%; position: relative; ${extraStyle}"></div></div>`);
+        }
+    
+        const controller = new ScrollMagic.Controller();
+    
+        for (let id in map) {
+            const delta = 100 - 100 / map[id].$els.length;
+            const sign = (map[id].options.dir === 'left') ? '-' : '';
+            const animation = new TimelineMax().to(`#${id}`, 1, {x: `${sign}${delta}%`, ease: Linear.easeNone});
+
+            new ScrollMagic.Scene({
+                triggerElement: `#pin-${id}`,
+                triggerHook: "onLeave",
+                duration: `${map[id].$els.length}00%`
+            })
+            .setPin(`#pin-${id}`)
+            .setTween(animation)
+            .addTo(controller);    
+        }    
+    }
+// </script>
