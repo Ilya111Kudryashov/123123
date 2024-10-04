@@ -104,6 +104,7 @@ const header=document.querySelector(".header")
 const headerSearch=document.querySelector(".header__search-btn")
 const burgerBtn=document.querySelector('.burger__btn');
 const headerWrpa=document.querySelector('.header__wrapper');
+const backSearch=document.querySelector('.header__search-back');
 
 headerSearch.addEventListener('click',function(){
   header.classList.add('header__search--active')
@@ -120,7 +121,12 @@ document.addEventListener('click', function (e) {
   document.querySelector('.wrapper__content').classList.remove('overlay')
   }
 });
-
+//click btn back
+backSearch.addEventListener('click',function(){
+  header.classList.remove('header__search--active')
+  document.body.classList.remove("no-scroll");
+  document.querySelector('.wrapper__content').classList.remove('overlay')
+})
 // burger
 
 burgerBtn.addEventListener('click',function(){
