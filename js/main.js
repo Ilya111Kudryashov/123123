@@ -102,11 +102,14 @@ jQuery(($) => {
 
 const header=document.querySelector(".header")
 const headerSearch=document.querySelector(".header__search-btn")
+const burgerBtn=document.querySelector('.burger__btn');
+const headerWrpa=document.querySelector('.header__wrapper');
 
 headerSearch.addEventListener('click',function(){
   header.classList.add('header__search--active')
   document.body.classList.add("no-scroll");
   document.querySelector('.wrapper__content').classList.add('overlay')
+  headerWrpa.classList.remove('menu-open')
 })
 
 // клик оверлей
@@ -119,8 +122,7 @@ document.addEventListener('click', function (e) {
 });
 
 // burger
-const burgerBtn=document.querySelector('.burger__btn');
-const headerWrpa=document.querySelector('.header__wrapper');
+
 burgerBtn.addEventListener('click',function(){
   headerWrpa.classList.toggle('menu-open');
   document.body.classList.toggle("no-scroll");
@@ -249,13 +251,13 @@ burgerBtn.addEventListener('click',function(){
         for (let group of groups) {
             const id = 'uc' + Date.now();
             map[id] = group;
-            const extraStyle = group.options.dir === 'right' ? `left: -${group.$els.length - 1}00vw; flex-direction: row-reverse;` : '';
+            const extraStyle = group.options.dir === 'right' ? `left: -${group.$els.length - 1}00px; flex-direction: row-reverse;` : '';
             group
                 .$els
                 .css({
-                    flex: '0 0 100vw',
+                    flex: '0 0',
                 })
-                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 100vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00vw; height: 100%; position: relative; ${extraStyle}"></div></div>`);
+                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 100vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
         }
     
         const controller = new ScrollMagic.Controller();
