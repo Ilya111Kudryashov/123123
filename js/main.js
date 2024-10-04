@@ -14,7 +14,9 @@ document.querySelector(".header__btn--mobile button").addEventListener("click", 
   Fancybox.show([{ src: "#form", type: "inline" }]);
 }); 
 
-
+var bgvideo = document.getElementById("bgvideo");
+bgvideo.muted = true;
+bgvideo.play();
 const swiper1 = new Swiper('#illustrationSlider', {
   slidesPerView: 1,
   spaceBetween: 20,
