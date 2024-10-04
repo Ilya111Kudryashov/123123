@@ -565,6 +565,15 @@ p {
     flex-wrap: wrap;
   }
 }
+@media (max-width: 350px) {
+  .header__logo svg {
+    width: 160px;
+    height: 32px;
+  }
+  .header__wrapper.menu-open .header__content {
+    top: 66px;
+  }
+}
 .promoBgVideo {
   position: absolute;
   right: 0;
