@@ -125,10 +125,11 @@ gsap.to(sections, {
   scrollTrigger: {
     trigger: ".scrolling_wrapper",
      start:"top 55%",
-    end:"top 50%",
+    end:"top 90%",
     // pin: true,
     // markers:true,
-    scrub: true,
+    duration:2,
+    scrub: 4,
     snap: 1 / (sections.length -1),
     end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
   }
