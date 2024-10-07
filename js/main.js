@@ -124,11 +124,11 @@ gsap.to(sections, {
   ease: "none",
   scrollTrigger: {
     trigger: ".scrolling_wrapper",
-    start:"top 20%",
-    // end:"top 50%",
+    start:"top 30%",
+    end:"top 90%",
     pin: true,
     // markers:true,
-    scrub: 4,
+    scrub: true,
     snap: 1 / (sections.length -1),
     end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
   }
