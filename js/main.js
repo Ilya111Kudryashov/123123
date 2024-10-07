@@ -120,14 +120,14 @@ jQuery(($) => {
     let sections = gsap.utils.toArray(".hwork__content-item");
 
 gsap.to(sections, {
-  xPercent: -97 * (sections.length ),
+  xPercent: -100 * (sections.length ),
   ease: "none",
   scrollTrigger: {
         trigger: ".scrolling_wrapper",
     start:"top 55%",
     end:"top 20%",
     // pin: true,
-    markers:true,
+    //markers:true,
     duration:2,
     scrub: 2,
     snap: 1 / (sections.length -1),
