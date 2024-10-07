@@ -89,66 +89,117 @@ jQuery(($) => {
     $('.hwork__content').addClass('scrolling_wrapper')
     $('.hwork__content-item').addClass('uc-leftscroll')
 
+    // try gsap
+    gsap.registerPlugin(ScrollTrigger)
+    // 1 example
+    // let tl = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: ".scrolling_wrapper",
+    //     start: "top bottom",
+    //     end: "bottom top",
+    //     scrub: 3,
+    //     markers: true,
+    //     id: "scrub"
+    //   } 
+    // })
+    // tl.to(".scrolling_wrapper", {
+    //   duration: 1,
+    //   start:"top center",
+    //   // x: 0,
+    //   end:"top right",
+    //   rotation: 0,
+    // })
+    // .to(".scrolling_wrapper", {
+    //   duration: 2,
+    //   scale: 1,
+    //   x:-2000
+    // });
 
+    // 2example
+
+    let sections = gsap.utils.toArray(".hwork__content-item");
+
+gsap.to(sections, {
+  xPercent: -97 * (sections.length ),
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".scrolling_wrapper", 
+    pin: true,
+    scrub: 1,
+    snap: 1 / (sections.length -1),
+    end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
+  }
+});
+
+
+    
+  // ScrollTrigger.create({
+  //   trigger: ".trigger",
+  //   start: "top center",
+  //   end: "+=500",
+  //   onUpdate: (self) => console.log("direction:", self.direction),
+  // });
       // $('.hwork__content').mousewheel(function(e, delta) {
       
       //     this.scrollLeft -= (delta * 40);
       //     e.preventDefault();
       // });
 
-    initMagicScroll();
-    function initMagicScroll() {
-        const groups = [];
-        $('.uc-rightscroll, .uc-leftscroll').each(function() {
-            if ($(this).prev().hasClass('uc-rightscroll') && $(this).hasClass('uc-rightscroll')) {
-                groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
-                return;
-            }
 
-             if ($(this).prev().hasClass('uc-leftscroll') && $(this).hasClass('uc-leftscroll')) {
-                groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
-                return;
-            }
-    
-            groups.push({
-                $els: $(this),
-                options: {
-                    dir: $(this).hasClass('uc-leftscroll') ? 'left' : 'right'
-                }
-            });
-        });
-    
-        const map = {};
-        for (let group of groups) {
-            const id = 'uc' + Date.now();
-            map[id] = group;
-            const extraStyle = group.options.dir === 'right' ? `left: -${group.$els.length - 1}00px; flex-direction: row-reverse;` : '';
-            group
-                .$els
-                .css({
-                    flex: '0 0 238px',
-                    marginRight:"61px",
-                })
-                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 61vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
-        }
-    
-        const controller = new ScrollMagic.Controller();
-    
-        for (let id in map) {
-            const delta = 100 - 100 / map[id].$els.length;
-            const sign = (map[id].options.dir === 'left') ? '-' : '';
-            const animation = new TimelineMax().to(`#${id}`, 1, {x: `${sign}${260}%`, ease: Linear.easeNone});//260
+      // 50на 50 рабочий
+    // initMagicScroll();
+    // function initMagicScroll() {
+    //     const groups = [];
+    //     $('.uc-rightscroll, .uc-leftscroll').each(function() {
+    //         if ($(this).prev().hasClass('uc-rightscroll') && $(this).hasClass('uc-rightscroll')) {
+    //             groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
+    //             return;
+    //         }
 
-            new ScrollMagic.Scene({
-                triggerElement: `#pin-${id}`,
-                triggerHook: "onLeave",
-                duration: `${map[id].$els.length}00%`
-            })
-            .setPin(`#pin-${id}`)
-            .setTween(animation)
-            .addTo(controller);    
-        }    
-    }
+    //          if ($(this).prev().hasClass('uc-leftscroll') && $(this).hasClass('uc-leftscroll')) {
+    //             groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
+    //             return;
+    //         }
+    
+    //         groups.push({
+    //             $els: $(this),
+    //             options: {
+    //                 dir: $(this).hasClass('uc-leftscroll') ? 'left' : 'right'
+    //             }
+    //         });
+    //     });
+    
+    //     const map = {};
+    //     for (let group of groups) {
+    //         const id = 'uc' + Date.now();
+    //         map[id] = group;
+    //         const extraStyle = group.options.dir === 'right' ? `left: -${group.$els.length - 1}00px; flex-direction: row-reverse;` : '';
+    //         group
+    //             .$els
+    //             .css({
+    //                 flex: '0 0 238px',
+    //                 marginRight:"61px",
+    //             })
+    //             .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 61vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
+    //     }
+    
+    //     const controller = new ScrollMagic.Controller();
+    
+    //     for (let id in map) {
+    //         const delta = 100 - 100 / map[id].$els.length;
+    //         const sign = (map[id].options.dir === 'left') ? '-' : '';
+    //         const animation = new TimelineMax().to(`#${id}`, 1, {x: `${sign}${260}%`, ease: Linear.easeNone});//260
+
+    //         new ScrollMagic.Scene({
+    //             triggerElement: `#pin-${id}`,
+    //             triggerHook: "onLeave",
+    //             duration: `${map[id].$els.length}00%`
+    //         })
+    //         .setPin(`#pin-${id}`)
+    //         .setTween(animation)
+    //         .addTo(controller);    
+    //     }    
+    // }
 
 
 
