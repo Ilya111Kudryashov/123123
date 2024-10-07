@@ -123,15 +123,15 @@ gsap.to(sections, {
   xPercent: -97 * (sections.length ),
   ease: "none",
   scrollTrigger: {
-    trigger: ".scrolling_wrapper",
-     start:"top 55%",
-    end:"top 90%",
+        trigger: ".scrolling_wrapper",
+    start:"top 55%",
+    end:"top 20%",
     // pin: true,
-    // markers:true,
+    markers:true,
     duration:2,
-    scrub: 4,
+    scrub: 2,
     snap: 1 / (sections.length -1),
-    end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
+    // end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
   }
 });
 
