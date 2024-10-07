@@ -137,7 +137,7 @@ jQuery(($) => {
         for (let id in map) {
             const delta = 100 - 100 / map[id].$els.length;
             const sign = (map[id].options.dir === 'left') ? '-' : '';
-            const animation = new TimelineMax().to(`#${id}`, 1, {x: `${sign}${delta}%`, ease: Linear.easeNone});//260
+            const animation = new TimelineMax().to(`#${id}`, 1, {x: `${sign}${260}%`, ease: Linear.easeNone});//260
 
             new ScrollMagic.Scene({
                 triggerElement: `#pin-${id}`,
