@@ -124,7 +124,7 @@ gsap.to(sections, {
   ease: "none",
   scrollTrigger: {
         trigger: ".scrolling_wrapper",
-    start:"top 55%",
+    start:"top 30%",
     end:"top 20%",
     // pin: true,
     //markers:true,
