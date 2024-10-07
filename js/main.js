@@ -90,66 +90,65 @@ jQuery(($) => {
     $('.hwork__content-item').addClass('uc-leftscroll')
 
 
-      $('.hwork__content').mousewheel(function(e, delta) {
-          // multiplying by 40 is the sensitivity, 
-          // increase to scroll faster.
-          this.scrollLeft -= (delta * 40);
-          e.preventDefault();
-      });
+      // $('.hwork__content').mousewheel(function(e, delta) {
+      
+      //     this.scrollLeft -= (delta * 40);
+      //     e.preventDefault();
+      // });
 
-    // initMagicScroll();
-    // function initMagicScroll() {
-    //     const groups = [];
-    //     $('.uc-rightscroll, .uc-leftscroll').each(function() {
-    //         if ($(this).prev().hasClass('uc-rightscroll') && $(this).hasClass('uc-rightscroll')) {
-    //             groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
-    //             return;
-    //         }
+    initMagicScroll();
+    function initMagicScroll() {
+        const groups = [];
+        $('.uc-rightscroll, .uc-leftscroll').each(function() {
+            if ($(this).prev().hasClass('uc-rightscroll') && $(this).hasClass('uc-rightscroll')) {
+                groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
+                return;
+            }
 
-    //          if ($(this).prev().hasClass('uc-leftscroll') && $(this).hasClass('uc-leftscroll')) {
-    //             groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
-    //             return;
-    //         }
+             if ($(this).prev().hasClass('uc-leftscroll') && $(this).hasClass('uc-leftscroll')) {
+                groups[groups.length - 1].$els = groups.at(-1).$els.add($(this));
+                return;
+            }
     
-    //         groups.push({
-    //             $els: $(this),
-    //             options: {
-    //                 dir: $(this).hasClass('uc-leftscroll') ? 'left' : 'right'
-    //             }
-    //         });
-    //     });
+            groups.push({
+                $els: $(this),
+                options: {
+                    dir: $(this).hasClass('uc-leftscroll') ? 'left' : 'right'
+                }
+            });
+        });
     
-    //     const map = {};
-    //     for (let group of groups) {
-    //         const id = 'uc' + Date.now();
-    //         map[id] = group;
-    //         const extraStyle = group.options.dir === 'right' ? `left: -${group.$els.length - 1}00px; flex-direction: row-reverse;` : '';
-    //         group
-    //             .$els
-    //             .css({
-    //                 flex: '0 0 238px',
-    //                 marginRight:"61px",
-    //             })
-    //             .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 45vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
-    //     }
+        const map = {};
+        for (let group of groups) {
+            const id = 'uc' + Date.now();
+            map[id] = group;
+            const extraStyle = group.options.dir === 'right' ? `left: -${group.$els.length - 1}00px; flex-direction: row-reverse;` : '';
+            group
+                .$els
+                .css({
+                    flex: '0 0 238px',
+                    marginRight:"61px",
+                })
+                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 45vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
+        }
     
-    //     const controller = new ScrollMagic.Controller();
+        const controller = new ScrollMagic.Controller();
     
-    //     for (let id in map) {
-    //         const delta = 100 - 100 / map[id].$els.length;
-    //         const sign = (map[id].options.dir === 'left') ? '-' : '';
-    //         const animation = new TimelineMax().to(`#${id}`, 1, {x: `${sign}${delta}%`, ease: Linear.easeNone});//260
+        for (let id in map) {
+            const delta = 100 - 100 / map[id].$els.length;
+            const sign = (map[id].options.dir === 'left') ? '-' : '';
+            const animation = new TimelineMax().to(`#${id}`, 1, {x: `${sign}${delta}%`, ease: Linear.easeNone});//260
 
-    //         new ScrollMagic.Scene({
-    //             triggerElement: `#pin-${id}`,
-    //             triggerHook: "onLeave",
-    //             duration: `${map[id].$els.length}00%`
-    //         })
-    //         .setPin(`#pin-${id}`)
-    //         .setTween(animation)
-    //         .addTo(controller);    
-    //     }    
-    // }
+            new ScrollMagic.Scene({
+                triggerElement: `#pin-${id}`,
+                triggerHook: "onLeave",
+                duration: `${map[id].$els.length}00%`
+            })
+            .setPin(`#pin-${id}`)
+            .setTween(animation)
+            .addTo(controller);    
+        }    
+    }
 
 
 
