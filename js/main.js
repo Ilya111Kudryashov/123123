@@ -129,7 +129,7 @@ jQuery(($) => {
                     flex: '0 0 238px',
                     marginRight:"61px",
                 })
-                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 45vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
+                .wrapAll(`<div id="pin-${id}" style="overflow: hidden; width: 100vw; height: 61vh;"><div id="${id}" style="display: flex; width: ${group.$els.length}00px; height: 100%; position: relative; ${extraStyle}"></div></div>`);
         }
     
         const controller = new ScrollMagic.Controller();
