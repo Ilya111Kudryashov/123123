@@ -128,7 +128,7 @@ gsap.to(sections, {
     // end:"top 50%",
     pin: true,
     // markers:true,
-    scrub: 1,
+    scrub: 4,
     snap: 1 / (sections.length -1),
     end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
   }
