@@ -129,7 +129,7 @@ gsap.to(sections, {
      pin: true,
     //markers:true,
     duration:5,
-    scrub: 2,
+    scrub: 10,
     snap: 1 / (sections.length -1),
     // end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
   }
