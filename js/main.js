@@ -126,7 +126,7 @@ gsap.to(sections, {
         trigger: ".scrolling_wrapper",
     start:"top 30%",
     end:"top 20%",
-    // pin: true,
+     pin: true,
     //markers:true,
     duration:5,
     scrub: 2,
