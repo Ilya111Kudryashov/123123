@@ -1969,11 +1969,14 @@ input::-webkit-inner-spin-button {
     display: none;
   }
 }
+.hwork {
+  overflow: hidden;
+}
+
 .scrolling_wrapper {
   display: flex;
   align-items: center;
   gap: 61px;
-  overflow: hidden;
 }
 
 .scrolling_wrapper div div {

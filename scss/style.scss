@@ -500,6 +500,47 @@ color: #fff;
 	align-items: center;
 }
 .promo__btn-pop {
+	position: relative;
+	// z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.promo__btn-pop img{
+	position:relative;
+	z-index: 2;
+}
+.promo__btn-pop::after{
+	position: absolute;
+    content: "";
+    width: 100px;
+    height: 100px;
+    border: 0;
+    border-radius: 50%;
+background-color: #2C5EB9;
+will-change: transform;
+	animation: scale 1.5s linear;
+	animation-iteration-count: infinite;
+	display: block;
+	// left: 50%;
+	// top: 50%;
+	// transform: translate(-50%, 50%);
+	z-index: 1;
+}
+.promo__btn-pop::before{
+	position: absolute;
+    content: "";
+    width: 100px;
+    height: 100px;
+    border: 0;
+    border-radius: 50%;
+background-color: #2C5EB9;
+will-change: transform;
+	animation: scales 1.5s linear;
+	animation-iteration-count: infinite;
+	z-index: 1;
+}
+.promo__btn-pop {
 }
 .promo__btn-text {
 	font-weight: 400;
@@ -1028,6 +1069,9 @@ overflow: hidden;
 		position: relative;
 		overflow: hidden;
 	}
+	.form .form__wrapper{
+		display: block!important;
+	}
 	.form__wrapper::before {
 		position: absolute;
 		content: url("./../img/form-bg.svg");
@@ -1047,6 +1091,20 @@ overflow: hidden;
 		right: 0;
 		width: 100%;
 	height: 350px;
+	}
+	.form__wrapper.fancybox__content{
+		border-radius: 20px;
+		padding: 40px;
+		background-color:#202637;
+		background-image: url('./../img/form-bg.svg');
+	}
+	.form__wrapper.fancybox__content::before{
+		position: absolute;
+		content: url("./../img/form-bg.svg");
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
 	}
 
 	.form__title {
@@ -1167,10 +1225,119 @@ overflow: hidden;
 			flex-direction: column;
 		}
 	}
+	@media (max-width: 500px) {
+		.fancybox__slide{
+			padding: 0!important;
+			background-color:#202637;
+		}
+		.form__wrapper.fancybox__content{
+			border-radius: 0!important;
+			padding: 30px;
+		}
+	}
 	@media(max-width: 400px){
 		.form{
 			padding: 24px 0;
 		}
+		.form__wrapper.fancybox__content{
+			border-radius: 0!important;
+			padding: 16px;
+		}
+	}
+
+.inputFileWrapper__inner{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+	.input-file {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+	}
+	.input-file span {
+		position: relative;
+		cursor: pointer;
+		text-decoration: underline;
+		color: #fff;
+		// display: inline-block;
+		// outline: none;
+		// text-decoration: none;
+		// font-size: 14px;
+		// vertical-align: middle;
+		// color: rgb(255 255 255);
+		// text-align: center;
+		// border-radius: 4px;
+		// background-color: #419152;
+		// line-height: 22px;
+		// height: 40px;
+		// padding: 10px 20px;
+		// box-sizing: border-box;
+		// border: none;
+		// margin: 0;
+		// transition: background-color 0.2s;
+	}
+	.input-file input[type=file] {
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+		display: block;
+		width: 0;
+		height: 0;
+	}
+	 
+	/* Focus */
+	.input-file input[type=file]:focus + span {
+		// box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+	}
+	 
+	/* Hover/Active */
+	.input-file:hover span {
+		// background-color: #59be6e;
+	}
+	.input-file:active span {
+		// background-color: #2E703A;
+	}
+	.inputFileWrapper__text{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 157%;
+		text-align: center;
+		color: rgba(255, 255, 255, 0.7);
+		font-family: "Open Sans", sans-serif;
+		max-width: 217px;
+	}
+	/* Disabled */
+	.input-file input[type=file]:disabled + span {
+		background-color: #eee;
+	}
+	 
+	/* Список файлов */
+	.input-file-list {
+		padding: 10px 0;
+	}
+	.input-file-list-item {
+		margin-bottom: 10px;
+	}
+	.input-file-list-remove {
+		color: red;
+		text-decoration: none;
+		display: inline-block;
+		margin-left: 5px;
+	}
+	.inputFileWrapper{
+		border: 1px solid rgba(234, 237, 246, 0.1);
+		border-radius: 8px;
+		backdrop-filter: blur(16px);
+		background: rgba(255, 255, 255, 0.1);
+		padding: 13px 16px;
+		height: 144px;
+		display: flex;
+		justify-content: center;
+
 	}
 	// end section form main 
 	
@@ -1834,14 +2001,16 @@ color: #fff;
 
 
 
-
+.hwork{
+	overflow: hidden;
+}
 
 .scrolling_wrapper{
 	display: flex;
 	align-items: center;
 	// gap: 100px;
 	gap: 61px;
-	overflow: hidden;
+	// overflow: hidden;
 }
 .scrolling_wrapper div div{
 	inset:50px 0 0 0; 

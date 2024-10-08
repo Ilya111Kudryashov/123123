@@ -10,8 +10,8 @@
 /> -->
 <link rel="stylesheet" href="./scss/fancybox.css">
 <link rel="stylesheet" href="./scss/swiper-bundle.css">
-<!-- <link rel="stylesheet" href="./scss/style.css"> -->
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./scss/style.css">
+<!-- <link rel="stylesheet" href="./css/style.css"> -->
 </head>
 <body>
 	<div class="wrapper__content">
@@ -164,9 +164,9 @@
 					</div>
 					<div class="promo__btn" >
 						<a href="./img/IMG_6244.MP4" class="promo__btn-pop" data-fancybox="promo" >
-							<svg width="188" height="188" viewBox="0 0 188 188" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<circle opacity="0.1" cx="94.0003" cy="94.0003" r="93.3333" fill="#2C5EB9"/>
-								<circle opacity="0.1" cx="94" cy="94" r="70" fill="#2C5EB9"/>
+							<!-- <svg width="188" height="188" viewBox="0 0 188 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle class="circleBig" opacity="0.1" cx="94.0003" cy="94.0003" r="93.3333" fill="#2C5EB9"/>
+								<circle class="circleSmall" opacity="0.1" cx="94" cy="94" r="70" fill="#2C5EB9"/>
 								<circle opacity="0.1" cx="93.9997" cy="93.9997" r="46.6667" fill="#2C5EB9"/>
 								<g filter="url(#filter0_d_522_85)">
 								<circle cx="94.0006" cy="94.0006" r="46.6667" fill="#2C5EB9"/>
@@ -189,8 +189,8 @@
 								<rect width="34.7719" height="34.7719" fill="white" transform="translate(76.8037 76.7861)"/>
 								</clipPath>
 								</defs>
-								</svg>
-								
+								</svg> -->
+								<img src="./img/play-icon.svg" alt="">
 						</a>
 						<p class="promo__btn-text">
 							Видео о производстве
@@ -614,7 +614,7 @@
 
 		<section class="form">
 			<div class="container">
-				<div class="form__wrapper">
+				<div class="form__wrapper" id="form">
 					<div class="form__title section-title--wh">
 						<h2>
 							Оставить заявку
@@ -660,9 +660,25 @@
 								<div class="form__inner-input__title">
 									Файл
 								</div>
-								<textarea type="text"></textarea>
+								<div class="inputFileWrapper">
+									<div class="inputFileWrapper__inner">
+										<label class="input-file">
+										<svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M14.0696 19.75V13.9167M16.9163 16.833H11.083M25.6663 13.333V20.333C25.6663 24.9997 24.4997 26.1663 19.833 26.1663H8.16634C3.49967 26.1663 2.33301 24.9997 2.33301 20.333V8.66634C2.33301 3.99967 3.49967 2.83301 8.16634 2.83301H9.91634C11.6663 2.83301 12.0513 3.34634 12.7163 4.23301L14.4663 6.56634C14.9097 7.14967 15.1663 7.49967 16.333 7.49967H19.833C24.4997 7.49967 25.6663 8.66634 25.6663 13.333Z" stroke="white" stroke-width="1.75" stroke-miterlimit="10" stroke-linecap="round" />
+										</svg>
+										<div class="inputFileWrapper__text">
+											Перетащите файл для загрузки 
+											или
+											<input type="file" multiple name="file[]" accept=".jpg,.jpeg,.png,.pdf,.rar,.docx,xlsx">
+											<span>выберите файл</span>
+										</div>
+											</label> 
+											<div class="input-file-list"></div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
+						<!-- </div> -->
 						<button class="form__btn">
 							Оставить заявку
 						</button>
@@ -824,7 +840,7 @@
 					</a>
 					<div  class="footer__btn" data-fancybox="" data-src="#form">
 						Оставить заявку
-						<div class="form__wrapper" id="form" style="display: none;">
+						<!-- <div class="form__wrapper" id="form" style="display: none;">
 							<div class="form__title section-title--wh">
 								<h2>
 									Оставить заявку
@@ -884,7 +900,7 @@
 									</a>
 								</p>
 							</form>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="footer__content">

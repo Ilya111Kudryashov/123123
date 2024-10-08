@@ -118,7 +118,7 @@ jQuery(($) => {
     // 2example
 
     let sections = gsap.utils.toArray(".hwork__content-item");
-
+// вариант рабочий его раскоментить
 gsap.to(sections, {
   xPercent: -100 * (sections.length ),
   ease: "none",
@@ -128,13 +128,24 @@ gsap.to(sections, {
     end:"top 20%",
     // pin: true,
     //markers:true,
-    duration:2,
+    duration:5,
     scrub: 2,
     snap: 1 / (sections.length -1),
     // end: () => "+=" + document.querySelector(".scrolling_wrapper").offsetWidth
   }
 });
-
+// gsap.to(".scrolling_wrapper .hwork__content-item",{
+//   transform: "translateX(-600%)",
+//   scrollTrigger:{
+//     trigger:".scrolling_wrapper",
+//     scroller:"body",
+//     markers:true,
+//     start:"top 20%",
+//     end:"top -100%",
+//     scrub:2,
+//     pin:true,
+//   }
+// })
 
     
   // ScrollTrigger.create({
@@ -321,3 +332,34 @@ burgerBtn.addEventListener('click',function(){
     //         .addTo(controller);    
     //     }    
     // }
+
+
+    // input file
+    var dt = new DataTransfer();
+ 
+    $('.input-file input[type=file]').on('change', function(){
+      let $files_list = $(this).closest('.input-file').next();
+      $files_list.empty();
+     
+      for(var i = 0; i < this.files.length; i++){
+        let new_file_input = '<div class="input-file-list-item">' +
+          '<span class="input-file-list-name">' + this.files.item(i).name + '</span>' +
+          '<a href="#" onclick="removeFilesItem(this); return false;" class="input-file-list-remove">x</a>' +
+          '</div>';
+        $files_list.append(new_file_input);
+        dt.items.add(this.files.item(i));
+      };
+      this.files = dt.files;
+    });
+     
+    function removeFilesItem(target){
+      let name = $(target).prev().text();
+      let input = $(target).closest('.input-file-row').find('input[type=file]');	
+      $(target).closest('.input-file-list-item').remove();	
+      for(let i = 0; i < dt.items.length; i++){
+        if(name === dt.items[i].getAsFile().name){
+          dt.items.remove(i);
+        }
+      }
+      input[0].files = dt.files;  
+    }
