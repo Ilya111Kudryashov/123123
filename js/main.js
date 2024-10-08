@@ -42,7 +42,7 @@ const benefitSwiperConfig={
     el: '#mainBenefitpagination',
   },
 	// effect: "fade",
-  autoHeight: true,
+  //autoHeight: true,
   navigation: {
     nextEl: '#benefitNext',
     prevEl: '#benefitPrev',
